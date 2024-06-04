@@ -17,9 +17,9 @@ module ExceptionHunter
       if options[:users]
         gsub_file 'config/routes.rb',
                   "\n  devise_for :#{plural_table_name}, skip: :all",
-                  "\n  ExceptionHunter.routes(self)"
+                  "\n  mount ExceptionHunter::Engine => 'exception_hunter'"
       else
-        route 'ExceptionHunter.routes(self)'
+        route "mount ExceptionHunter::Engine => 'exception_hunter'"
       end
     end
 
